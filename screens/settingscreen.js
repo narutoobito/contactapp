@@ -1,0 +1,12 @@
+import React from 'react';
+import {View} from 'react-native'
+
+export default class SettingScreen extends React.Component
+{
+render()
+{
+return <View/>
+
+}
+
+}
