@@ -11,18 +11,18 @@ warnings: 'type username and password',
 //http://192.168.43.208:2018/
 _handleNavigatiion= async ()=>{
         let result=null;
-        
-        let response = await fetch('https://narutoobito-autherization-1.glitch.me/',{
+        this.setState({warnings: 'LOADING.....please wait it will take little longer for first time'})
+        let response = await fetch('https://narutoobito-loginreact.herokuapp.com/login',{
                                     method:'POST' ,
                                     headers:
                                             {'Content-Type' : 'application/json'},
                                             body: JSON.stringify({username: this.state.username, password: this.state.password })
-                                            })//.then(res=>res.json()).then(r=>{if(r.ans==" correct username")this.props.navigation.navigate('Main'); console.log(r)});
+                                            })
         result = await response.json()
         if(result){
-        if(result.ans==" correct username")
+        if(result.ok=== true)
             this.props.navigation.navigate('Main')
-        else this.setState({warnings:result.ans})
+        else this.setState({warnings:result.message})
         }
 }
 
@@ -44,24 +44,29 @@ this.setState({password});
 
 render(){
 return(
-<View style={{flex:1,justifyContent: 'center',alignItems:'center', background: 'red'}}>
-<TextInput
-placeholder="username"
-value={this.state.username}
-onChangeText={this.handleNameChange}
-style={styles.inputs}
-/>
-<TextInput
-placeholder="password"
-value={this.state.password}
-onChangeText={this.handlePasswordChange}
-style={styles.inputs}
-/>
-<Button title="Press Me" onPress={this._handleNavigatiion}></Button>
-<Text style={styles.warnings}>{this.state.warnings}</Text>
-</View>
-)
-
+        <View style={{flex:1,justifyContent: 'center',alignItems:'center', background: 'red'}}>
+        <TextInput
+        placeholder="username"
+        value={this.state.username}
+        onChangeText={this.handleNameChange}
+        style={styles.inputs}
+        autoFocus={true}
+        blurOnSubmit={true}
+        autoCapitalize={'none'}
+        />
+        <TextInput
+        placeholder="password"
+        value={this.state.password}
+        onChangeText={this.handlePasswordChange}
+        blurOnSubmit={true}
+        autoCapitalize={'none'}
+        keyboardType={'visible-password'}
+        style={styles.inputs}
+        />
+        <Button title="LogIN" onPress={this._handleNavigatiion} disabled={this.state.username!=''?false:true}></Button>
+        <Text style={styles.warnings}>{this.state.warnings}</Text>
+        </View>
+    )
 }
 }
 

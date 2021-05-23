@@ -1,5 +1,5 @@
 import React from 'react';
-import {View,Text,Button } from 'react-native';
+import {View,Text,Button,StyleSheet } from 'react-native';
 
 export default class ContactDetails extends React.Component {
 static navigationOptions=({navigation})=>({
@@ -23,16 +23,36 @@ this.props.navigation.push('ContactDetail',{name: randomOne.name,phone: randomOn
 render(){
 return (
 
-<View>
-<Text>
+<View style={styles.box}>
+<Text style={styles.number}>
 {this.props.navigation.getParam('phone')}</Text>
 
-<Button onPress={this.randomContact} title="random"></Button>
+<Button onPress={this.randomContact} title="To random Contact" style={styles.button}></Button>
 </View>
-
 
 )
 
 }
 
 }
+
+
+
+styles=StyleSheet.create({
+    number:{
+        margin: 100,
+        padding:10,
+        alignSelf: "center",
+        color: "blue",
+    },
+
+    button:{
+        margin:10,
+        padding:10,
+
+
+    },
+    box:{
+        backgroundColor:"#aac",
+    }
+})

@@ -16,6 +16,7 @@ inputs: {
 padding: 5,
 borderColor: 'black',
 borderWidth: 1,
+margin:10,
 },
 }
 )
@@ -77,12 +78,15 @@ onChangeText={this.handlePhoneChange}
 value={this.state.phone}
 keyboardType="numeric"
 placeholder="Phone"
-
+style={styles.inputs}
 />
-<Button title="add form" onPress={this.handleSubmit} disabled={!this.state.isFormValid}/>
+<Button title="add contact" onPress={this.handleSubmit} disabled={!this.state.isFormValid}/>
 
 </KeyboardAvoidingView>
 );
 }
 
 }
+
+
+
